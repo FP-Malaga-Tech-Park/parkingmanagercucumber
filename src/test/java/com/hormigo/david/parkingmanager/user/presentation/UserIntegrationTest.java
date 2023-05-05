@@ -52,7 +52,7 @@ public class UserIntegrationTest {
 
   @Test
   public void checkUser() {
-    String url = "http://localhost:" + port + "/list";
+    String url = "http://localhost:" + port + "user/list";
     chromeDriver.get(url);
     String titleUser = chromeDriver.getTitle();
     assertEquals("Usuarios", titleUser);
@@ -72,7 +72,7 @@ public class UserIntegrationTest {
 
   @Test
   public void checkCreateformUser() {
-    String url = "http://localhost:" + port + "/createform";
+    String url = "http://localhost:" + port + "user/createform";
     chromeDriver.get(url);
     String createTitle = chromeDriver.getTitle();
     assertEquals("Crear nuevo usuario", createTitle);
@@ -119,7 +119,7 @@ public class UserIntegrationTest {
 
   @Test
   public void checkDraw() {
-    String url = "http://localhost:" + port + "/draw";
+    String url = "http://localhost:" + port + "draw/list";
     chromeDriver.get(url);
     String titleDraw = chromeDriver.getTitle();
     assertEquals("Sorteos", titleDraw);
@@ -139,7 +139,7 @@ public class UserIntegrationTest {
 
   @Test
   public void checkCreateformDraw() {
-    String url = "http://localhost:" + port + "/newDraw";
+    String url = "http://localhost:" + port + "draw/createform";
     chromeDriver.get(url);
     WebElement descripcionLabel = chromeDriver.findElement(By.id("draw-label-description"));
     assertNotNull(descripcionLabel);
