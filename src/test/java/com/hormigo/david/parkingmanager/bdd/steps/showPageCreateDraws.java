@@ -31,17 +31,17 @@ public class showPageCreateDraws {
   }
 
   @Given("un usuario se encuentra en la pagina de ver sorteo")
-  public void openHome() {
+  public void listaSorteo() {
     driver.get("http://localhost:" + port + "/draw");
   }
 
-  @When("el usuario da click al boton de crear")
-  public void clickDrawsButton() {
-    driver.findElement(By.className("button is-primary")).click();
+  @When("el usuario da click al boton de crear sorteo")
+  public void clickCrearSorteo() {
+    driver.findElement(By.className("button-is-primary")).click();
   }
 
   @Then("se muestra el formulario")
-  public void navigateToDrawsList() {
+  public void crearSorteo() {
     String currentUrl = driver.getCurrentUrl();
     assertTrue(currentUrl.contains("/newDraw"));
   }

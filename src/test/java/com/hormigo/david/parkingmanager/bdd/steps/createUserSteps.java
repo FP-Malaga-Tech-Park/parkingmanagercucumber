@@ -1,5 +1,6 @@
 package com.hormigo.david.parkingmanager.bdd.steps;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
@@ -13,10 +14,10 @@ import com.hormigo.david.parkingmanager.user.service.UserService;
 
 import io.cucumber.java.BeforeAll;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class createUserStep {
-/*
+public class createUserSteps {
   @MockBean
   private UserService userService;
   @Value("${local.server.port}")
@@ -33,18 +34,38 @@ public class createUserStep {
   }
 
   @Given("un administrador esta en el formulario de creación")
-  public void openCreateUserForm(){
+  public void paginaCreacionUsuario() {
     driver.get("http://localhost:" + port + "/newUser");
   }
 
   @Given("el correo no esta asignado a otro usuario")
-  public void emailNoExiste(){
+  public void correoNoExiste(){
     when(mockedUserService.userExists(anyString())).thenReturn(false);
   }
 
   @When("relleno el correo")
-  public void typeEmail(){
-    driver.findElement(By.id("user")).sendKeys("prueba@email.com");
+  public void rellenarCorreo() {
+    driver.findElement(By.id("user-create-field-email")).sendKeys("prueba@email.com");
   }
- */
+
+  @When("relleno el nombre")
+  public void rellenarNombre() {
+    driver.findElement(By.id("user-create-label-name")).sendKeys("Oscar");
+  }
+
+  @When("Y relleno el primer apellido")
+  public void rellenarPrimerApellido() {
+    driver.findElement(By.id("user-create-label-lastname1")).sendKeys("Ortiz");
+  }
+
+  @When("Y pulso el botón de Crear")
+  public void pulsarBotonCrear() {
+    driver.findElement(By.id("user-create-button-submit")).click();
+  }
+
+  @Then("Entonces se navega a la lista")
+  public void volverUserList() {
+    String currentUrl = driver.getCurrentUrl();
+    assertTrue(currentUrl.contains("/users"));
+  }
 }

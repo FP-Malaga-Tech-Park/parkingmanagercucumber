@@ -35,17 +35,17 @@ public class showCreateUserSteps extends CucumberConfiguration {
     }
 
     @Given("un usuario esta en la pagina inicial")
-    public void openHome() {
+    public void inicioUsuario() {
         driver.get("http://localhost:" + port + "/");
     }
 
     @When("el usuario hace click sobre el botón de Usuarios")
-    public void clickUserButton() {
+    public void clickBotonUsuario() {
         driver.findElement(By.id("to-users-link")).click();
     }
 
     @Then("se muestran todos los usuarios del sistema")
-    public void navigateToUsersList() {
+    public void mostrarListaUsuario() {
         String currentUrl = driver.getCurrentUrl();
         assertTrue(currentUrl.contains("/users"));
     }

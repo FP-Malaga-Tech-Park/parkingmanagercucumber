@@ -10,4 +10,3 @@ Característica: Gestion de usuarios
     Y relleno el primer apellido
     Y pulso el botón de Crear
     Entonces se navega a la lista
-    Y existe el usuario
