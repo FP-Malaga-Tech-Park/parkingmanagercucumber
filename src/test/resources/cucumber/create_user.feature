@@ -1,5 +1,7 @@
 # language: es
 Característica: Gestion de usuarios
+
+
   Escenario: Crear un usuario correctamente
     Dado un administrador esta en el formulario de creación
     Y el correo no esta asignado a otro usuario
