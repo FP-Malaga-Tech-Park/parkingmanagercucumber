@@ -30,7 +30,7 @@ public class showPageCreateDraws {
     driver = new ChromeDriver(options);
   }
 
-  @Given("un usuario esta en la pagina de ver sorteo")
+  @Given("un usuario se encuentra en la pagina de ver sorteo")
   public void openHome() {
     driver.get("http://localhost:" + port + "/draw");
   }

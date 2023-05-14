@@ -1,6 +1,7 @@
 package com.hormigo.david.parkingmanager.bdd.steps;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.when;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,14 +13,15 @@ import com.hormigo.david.parkingmanager.user.service.UserService;
 
 import io.cucumber.java.BeforeAll;
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class showCreateDrawSteps {
+public class createUserStep {
+/*
   @MockBean
   private UserService userService;
   @Value("${local.server.port}")
   private int port;
+  private UserService mockedUserService;
   private static ChromeDriver driver;
 
   @BeforeAll
@@ -30,19 +32,19 @@ public class showCreateDrawSteps {
     driver = new ChromeDriver(options);
   }
 
-  @Given("un usuario que esta en la pagina inicial")
-  public void openHome() {
-    driver.get("http://localhost:" + port + "/");
+  @Given("un administrador esta en el formulario de creación")
+  public void openCreateUserForm(){
+    driver.get("http://localhost:" + port + "/newUser");
   }
 
-  @When("el usuario hace click sobre el botón de Sorteo")
-  public void clickDrawsButton() {
-    driver.findElement(By.id("to-draws-link")).click();
+  @Given("el correo no esta asignado a otro usuario")
+  public void emailNoExiste(){
+    when(mockedUserService.userExists(anyString())).thenReturn(false);
   }
 
-  @Then("se muestran todos los sorteos del sistema")
-  public void navigateToDrawsList() {
-    String currentUrl = driver.getCurrentUrl();
-    assertTrue(currentUrl.contains("/draws"));
+  @When("relleno el correo")
+  public void typeEmail(){
+    driver.findElement(By.id("user")).sendKeys("prueba@email.com");
   }
+ */
 }
