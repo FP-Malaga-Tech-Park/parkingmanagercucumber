@@ -60,7 +60,6 @@ public class CucumberSteps extends CucumberConfiguration {
     private DrawRepository mockedDrawRepository;
     @InjectMocks
     private UserServiceImpl mockedUserService;
-    private DrawServiceImpl mockedDrawService;
 
     @Value("${local.server.port}")
     private int port;
@@ -82,7 +81,6 @@ public class CucumberSteps extends CucumberConfiguration {
     @Dado("un usuario esta en la pagina {}")
     public void openPage(String pageName) {
         driver.get(getUrlFromPageName(pageName));
-
     }
 
     @Dado("el correo {} no esta asignado a otro usuario")
@@ -97,18 +95,15 @@ public class CucumberSteps extends CucumberConfiguration {
         switch (lugar) {
             case "correo":
                 final WebElement correo = driver.findElement(By.id("user-create-field-lastname1"));
-                String valorCorreo = correo.getAttribute("");
-                assertNotNull(valorCorreo);
+                correo.clear();
                 break;
             case "nombre":
                 final WebElement nombre = driver.findElement(By.id("user-create-field-lastname1"));
-                String valorNombre = nombre.getAttribute("");
-                assertNotNull(valorNombre);
+                nombre.clear();
                 break;
             case "apellido1":
                 final WebElement apellido1 = driver.findElement(By.id("user-create-field-lastname1"));
-                String valorApellido1 = apellido1.getAttribute("");
-                assertNotNull(valorApellido1);
+                apellido1.clear();
                 break;
             default:
                 break;
@@ -119,12 +114,6 @@ public class CucumberSteps extends CucumberConfiguration {
     public void populateField(String fieldName, String fieldValue) {
         WebElement inputField = driver.findElement(By.id(getFieldIdFromName(fieldName)));
         inputField.sendKeys(fieldValue);
-    }
-
-    @Cuando("se añade datos en la descripcion de sorteo")
-    public void descripcionSorteo() {
-        WebElement inputField = driver.findElement(By.id("draw-field-description"));
-        inputField.sendKeys("Descripcion");
     }
 
     @Cuando("el usuario hace click sobre el botón de {}")
@@ -196,6 +185,9 @@ public class CucumberSteps extends CucumberConfiguration {
             case "creación de usuarios":
                 endPoint = "/newUser";
                 break;
+            case "creación de sorteos":
+                endPoint = "/newDraw";
+                break;
             default:
                 break;
         }
@@ -217,6 +209,8 @@ public class CucumberSteps extends CucumberConfiguration {
             case "segundo apellido":
                 fieldId = "user-create-field-lastname2";
                 break;
+            case "descripcion":
+                fieldId = "draw-field-description";
             default:
                 break;
         }

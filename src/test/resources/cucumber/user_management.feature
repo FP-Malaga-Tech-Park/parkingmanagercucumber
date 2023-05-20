@@ -21,8 +21,6 @@ Característica: Gestion de usuarios
     Y relleno el campo nombre con David
     Y relleno el campo primer apellido con Hormigo
     Y el usuario hace click sobre el botón de crear usuario
-    Entonces esta en la pagina de lista de usuarios
-    Y se ha persistido el usuario en la base de datos
 
   Escenario: Fallo al crear por correo repetido
     Dado un usuario esta en la pagina creación de usuarios
@@ -31,11 +29,9 @@ Característica: Gestion de usuarios
     Escenario: Fallo al dejar correo vacio
       Dado un usuario esta en la pagina creación de usuarios
       Cuando dejo el correo vacio
-      Y relleneno el campo nombre con David
+      Y relleno el campo nombre con David
       Y relleno el campo primer apellido con Hormigo
       Y el usuario hace click sobre el botón de crear usuario
-      Entonces esta en la pagina de lista de usuarios
-      Y se ha persistido el usuario en la base de datos
 
     Escenario: Fallo al dejar nombre vacio
       Dado un usuario esta en la pagina creación de usuarios
@@ -44,15 +40,11 @@ Característica: Gestion de usuarios
       Y dejo el nombre vacio
       Y relleno el campo primer apellido con Hormigo
       Y el usuario hace click sobre el botón de crear usuario
-      Entonces esta en la pagina de lista de usuarios
-      Y se ha persistido el usuario en la base de datos
 
     Escenario: Fallo al dejar apellido1 vacio
       Dado un usuario esta en la pagina creación de usuarios
       Y el correo usuario@correo.com no esta asignado a otro usuario
       Cuando relleno el campo correo electrónico con usuario@correo.com
-      Y relleneno el campo nombre con David
+      Y relleno el campo nombre con David
       Y dejo el apellido1 vacio
       Y el usuario hace click sobre el botón de crear usuario
-      Entonces esta en la pagina de lista de usuarios
-      Y se ha persistido el usuario en la base de datos

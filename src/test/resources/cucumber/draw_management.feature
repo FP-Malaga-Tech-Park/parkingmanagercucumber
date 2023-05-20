@@ -8,7 +8,7 @@ Característica: Gestion de sorteos
   
   Escenario: Crear usuario
     Dado un usuario esta en la pagina creación de usuarios
-    Cuando se añade datos en la descripcion de sorteo
+    Cuando relleno el campo descripcion con PruebaDescripcion
     Y el usuario hace click sobre el botón de crear sorteo
     Entonces esta en la pagina de lista de sorteos
     Y se ha persistido el usuario en la base de datos
