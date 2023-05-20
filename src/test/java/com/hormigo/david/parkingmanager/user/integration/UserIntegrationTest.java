@@ -89,7 +89,6 @@ public class UserIntegrationTest {
                 () -> {assertNotNull(roleField);},
                 () -> {assertTrue(roleField.isEnabled());}
                 );
-  
     }
 
     @Test
@@ -156,7 +155,7 @@ public class UserIntegrationTest {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-  
+
         //userRepository.findByEmail("david@correo.es")).thenReturn(new User("david@correo.es","David","Homrigo","Ramírez",Role.PROFESSOR));
         final String url = buildUrl("/newUser");
         chromeDriver.get(url);
