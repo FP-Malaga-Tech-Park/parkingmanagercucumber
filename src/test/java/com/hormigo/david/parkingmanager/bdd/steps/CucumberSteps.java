@@ -1,6 +1,7 @@
 package com.hormigo.david.parkingmanager.bdd.steps;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -27,6 +28,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.hormigo.david.parkingmanager.bdd.CucumberConfiguration;
+import com.hormigo.david.parkingmanager.draw.domain.Draw;
+import com.hormigo.david.parkingmanager.draw.domain.DrawRepository;
 import com.hormigo.david.parkingmanager.draw.service.DrawServiceImpl;
 import com.hormigo.david.parkingmanager.user.domain.User;
 import com.hormigo.david.parkingmanager.user.domain.UserRepository;
@@ -54,6 +57,7 @@ public class CucumberSteps extends CucumberConfiguration {
 
     @MockBean
     private UserRepository mockedRepository;
+    private DrawRepository mockedDrawRepository;
     @InjectMocks
     private UserServiceImpl mockedUserService;
     private DrawServiceImpl mockedDrawService;
@@ -88,10 +92,39 @@ public class CucumberSteps extends CucumberConfiguration {
         
     }
 
+    @Dado("dejo el {} vacio")
+    public void comprobarSiEstanVacios(String lugar) {
+        switch (lugar) {
+            case "correo":
+                final WebElement correo = driver.findElement(By.id("user-create-field-lastname1"));
+                String valorCorreo = correo.getAttribute("");
+                assertNotNull(valorCorreo);
+                break;
+            case "nombre":
+                final WebElement nombre = driver.findElement(By.id("user-create-field-lastname1"));
+                String valorNombre = nombre.getAttribute("");
+                assertNotNull(valorNombre);
+                break;
+            case "apellido1":
+                final WebElement apellido1 = driver.findElement(By.id("user-create-field-lastname1"));
+                String valorApellido1 = apellido1.getAttribute("");
+                assertNotNull(valorApellido1);
+                break;
+            default:
+                break;
+        }
+    }
+
     @Cuando("relleno el campo {} con {}")
     public void populateField(String fieldName, String fieldValue) {
         WebElement inputField = driver.findElement(By.id(getFieldIdFromName(fieldName)));
         inputField.sendKeys(fieldValue);
+    }
+
+        @Cuando("se añade datos en la descripcion de sorteo")
+    public void descripcionSorteo() {
+        WebElement inputField = driver.findElement(By.id("draw-field-description"));
+        inputField.sendKeys("Descripcion");
     }
 
     @Cuando("el usuario hace click sobre el botón de {}")
@@ -115,23 +148,24 @@ public class CucumberSteps extends CucumberConfiguration {
         driver.findElement(By.id(buttonId)).click();
     }
 
-    @Cuando("se añade datos en la descripcion de sorteo")
-    public void descripcionSorteo(){
-        //when(.drawExits(anyString())).thenReturn(true);
-
-        WebElement crearDescripcion = driver.findElement(By.id("draw-fiel-description"));
-        crearDescripcion.sendKeys("prueba de sorteo");
-    }
-
     @Entonces("esta en la pagina de {}")
     public void isInPage(String pageName) {
 
         assertTrue(driver.getCurrentUrl().equals(getUrlFromPageName(pageName)));
     }
 
-    @Entonces("se ha persistido el usuario en la base de datos")
-    public void checkUserWasSaved() {
-        verify(mockedRepository, times(1)).save(any(User.class));
+    @Entonces("se ha persistido el {} en la base de datos")
+    public void checkUserWasSaved(String lugar) {
+        switch (lugar) {
+            case "usuario":
+                verify(mockedRepository, times(1)).save(any(User.class));
+                break;
+            case "sorteo":
+                verify(mockedDrawRepository, times(1)).save(any(Draw.class));
+            break;
+            default:
+                break;
+        }
     }
 
     @Entonces("se muestra un campo de {}")
@@ -140,6 +174,11 @@ public class CucumberSteps extends CucumberConfiguration {
         WebElement field = driver.findElement(By.id(fieldId));
 
         assertTrue(field.isDisplayed());
+    }
+
+    @Entonces("se muestra un botón de  {}")
+    public void mostrarBoton(String boton) {
+
     }
 
     private String getUrlFromPageName(String pageName) {
