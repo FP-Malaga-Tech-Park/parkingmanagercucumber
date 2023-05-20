@@ -121,7 +121,7 @@ public class CucumberSteps extends CucumberConfiguration {
         inputField.sendKeys(fieldValue);
     }
 
-        @Cuando("se añade datos en la descripcion de sorteo")
+    @Cuando("se añade datos en la descripcion de sorteo")
     public void descripcionSorteo() {
         WebElement inputField = driver.findElement(By.id("draw-field-description"));
         inputField.sendKeys("Descripcion");
@@ -162,7 +162,7 @@ public class CucumberSteps extends CucumberConfiguration {
                 break;
             case "sorteo":
                 verify(mockedDrawRepository, times(1)).save(any(Draw.class));
-            break;
+                break;
             default:
                 break;
         }
