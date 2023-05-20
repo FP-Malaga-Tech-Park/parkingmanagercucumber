@@ -117,7 +117,7 @@ public class CucumberSteps extends CucumberConfiguration {
 
     @Cuando("se añade datos en la descripcion de sorteo")
     public void descripcionSorteo(){
-        when(.drawExits(anyString())).thenReturn(true);
+        //when(.drawExits(anyString())).thenReturn(true);
 
         WebElement crearDescripcion = driver.findElement(By.id("draw-fiel-description"));
         crearDescripcion.sendKeys("prueba de sorteo");
