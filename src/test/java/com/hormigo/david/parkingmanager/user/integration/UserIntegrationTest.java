@@ -89,7 +89,6 @@ public class UserIntegrationTest {
                 () -> {assertNotNull(roleField);},
                 () -> {assertTrue(roleField.isEnabled());}
                 );
-  
     }
 
     @Test

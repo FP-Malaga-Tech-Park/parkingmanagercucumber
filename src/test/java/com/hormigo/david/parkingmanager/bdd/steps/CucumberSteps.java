@@ -27,6 +27,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.hormigo.david.parkingmanager.bdd.CucumberConfiguration;
+import com.hormigo.david.parkingmanager.draw.service.DrawServiceImpl;
 import com.hormigo.david.parkingmanager.user.domain.User;
 import com.hormigo.david.parkingmanager.user.domain.UserRepository;
 import com.hormigo.david.parkingmanager.user.service.UserService;
@@ -55,6 +56,7 @@ public class CucumberSteps extends CucumberConfiguration {
     private UserRepository mockedRepository;
     @InjectMocks
     private UserServiceImpl mockedUserService;
+    private DrawServiceImpl mockedDrawService;
 
     @Value("${local.server.port}")
     private int port;
@@ -111,6 +113,14 @@ public class CucumberSteps extends CucumberConfiguration {
                 break;
         }
         driver.findElement(By.id(buttonId)).click();
+    }
+
+    @Cuando("se añade datos en la descripcion de sorteo")
+    public void descripcionSorteo(){
+        when(.drawExits(anyString())).thenReturn(true);
+
+        WebElement crearDescripcion = driver.findElement(By.id("draw-fiel-description"));
+        crearDescripcion.sendKeys("prueba de sorteo");
     }
 
     @Entonces("esta en la pagina de {}")
