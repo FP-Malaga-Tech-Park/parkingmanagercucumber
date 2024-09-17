@@ -30,19 +30,19 @@ public class showPageCreateUserStep {
     driver = new ChromeDriver(options);
   }
 
-  @Given("un usuario esta en la pagina de ver sorteo")
-  public void openHome() {
-    driver.get("http://localhost:" + port + "/draw");
+  @Given("un usuario esta en la pagina de ver usuarios")
+  public void listaUsuarios() {
+    driver.get("http://localhost:" + port + "/users");
   }
 
-  @When("el usuario da click al boton de crear")
-  public void clickDrawsButton() {
+  @When("el usuario da click al boton de crear usuario")
+  public void clickCrearUsuario() {
     driver.findElement(By.id("users-button-create")).click();
   }
 
-  @Then("se muestra el formulario")
-  public void navigateToDrawsList() {
+  @Then("se muestra el formulario usuario")
+  public void CrearUsuario() {
     String currentUrl = driver.getCurrentUrl();
-    assertTrue(currentUrl.contains("/newDraw"));
+    assertTrue(currentUrl.contains("/newUser"));
   }
 }

@@ -30,18 +30,18 @@ public class showCreateDrawSteps {
     driver = new ChromeDriver(options);
   }
 
-  @Given("un usuario esta en la pagina inicial")
-  public void openHome() {
+  @Given("un usuario que esta en la pagina inicial")
+  public void indexSorteo() {
     driver.get("http://localhost:" + port + "/");
   }
 
   @When("el usuario hace click sobre el botón de Sorteo")
-  public void clickDrawsButton() {
+  public void clickListaSorteo() {
     driver.findElement(By.id("to-draws-link")).click();
   }
 
   @Then("se muestran todos los sorteos del sistema")
-  public void navigateToDrawsList() {
+  public void mostrarListaSorteo() {
     String currentUrl = driver.getCurrentUrl();
     assertTrue(currentUrl.contains("/draws"));
   }
